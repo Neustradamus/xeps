@@ -85,7 +85,7 @@
   <section2 topic='Success case' anchor='usecase-success'>
 
   <p>If the moderator is allowed to moderate the message, the groupchat service will send a message stanza to all participants (including the moderator), indicating that the message has been retracted and by whom.</p>
-  <p>This message will use &xep0422; to indicate that it applies to the moderated message, by referring to its XEP-0359 origin ID.</p>
+  <p>This message will use &xep0422; to indicate that it applies to the moderated message, by referring to its XEP-0359 Stanza ID.</p>
 
 <example caption='The groupchat service sends a moderation message to all participants'><![CDATA[
 <message type="groupchat" id='retraction-id-1' from='room@muc.example.com' to="juliet@capulet.example/balcony">

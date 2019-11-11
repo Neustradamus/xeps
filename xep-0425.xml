@@ -25,6 +25,12 @@
   <shortname>message-moderation</shortname>
   &jcbrand;
   <revision>
+    <version>0.2.0</version>
+    <date>2019-11-11</date>
+    <initials>jcb</initials>
+    <remark>Require stanza-id in tombstone and moderation message</remark>
+  </revision>
+  <revision>
     <version>0.1.0</version>
     <date>2019-11-01</date>
     <initials>XEP Editor (jcb)</initials>
@@ -118,9 +124,10 @@
 </section1>
 
 <section1 topic='Tombstones' anchor='tombstones'>
-  <p>An archiving service MAY replace the contents of a message that was retracted due to moderation with a 'tombstone' similar to the one described in &xep0424;.</p>
-  <p>The archiving service replaces the message with a &lt;moderated/&gt; element which contains a &lt;retracted/&gt; element. The &lt;moderated/&gt; element MUST include a 'by' attribute specifying the JID of the moderating entity. The &lt;retracted/&gt; element SHOULD contain a 'from' attribute which points to the JID of the author of the retracted message.</p>
-  <p>If the message was sent in a semi-anonymous MUC, the occupant id from &xep0421; needs to be included for the moderator and the message author in the &lt;moderated/&gt; and &lt;retracted/&gt; elements respectively. </p>
+  <p>A &xep0313; service MAY replace the contents of a message that was retracted due to moderation with a 'tombstone' similar to the one described in &xep0424;.</p>
+  <p>The archiving service replaces the message with a &lt;moderated/&gt; element which contains a &lt;retracted/&gt; element and the &xep0359; Stanza ID of the message.</p>
+  <p>The &lt;moderated/&gt; element MUST have a 'by' attribute specifying the JID of the moderating entity. The &lt;retracted/&gt; element SHOULD contain a 'from' attribute which points to the JID of the author of the retracted message.</p>
+  <p>If the message was sent in a semi-anonymous MUC, the occupant id from &xep0421; SHOULD be included for the moderator and the message author in the &lt;moderated/&gt; and &lt;retracted/&gt; elements respectively. </p>
 
   <example caption='Retracted groupchat message tombstone in a MAM result'><![CDATA[
 <message id='aeb213' to='room@muc.example.com/macbeth'>
@@ -129,6 +136,7 @@
       <delay xmlns='urn:xmpp:delay' stamp='2019-09-20T23:18:41Z'/>
       <moderated by="witch@shakespeare.example">
         <occupant-id xmlns="urn:xmpp:occupant-id:0" id="dd72603deec90a38ba552f7c68cbcc61bca202cd" />
+        <stanza-id xmlns='urn:xmpp:sid:0' id='stanza-id-1' by='room@muc.example.com'/>
         <retracted from='macbeth@shakespeare.example' stamp='2019-09-20T23:19:12Z' xmlns='urn:xmpp:message-retract:0'>
           <occupant-id xmlns="urn:xmpp:occupant-id:0" id="ab91cd8deec71a4888559f0c68cbcc61bca2123e" />
         </retracted>
